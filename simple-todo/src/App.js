@@ -1,64 +1,50 @@
-import React from 'react';
-import './App.css';
-import axios from 'axios'
-import Form from './components/Form'
-import ToDoList from './components/ToDoList';
-
-class App extends React.Component {
+import React, { useState } from 'react'
+import data from './data.json'
+import Header from './components/Header.js'
+import ToDoList from './components/ToDoList.js'
+import Form from './components/Form.js'
+import './App.css'
+ 
+function App() {
+  const [ toDoList, setToDoList ] = useState(data)
   
-  constructor(props) {
-    super(props)
-    this.state = {
-      todolist: [],
-      new_todo: '',
-    }
-  }
-
-  addTodo = (event) => {
-    event.preventDefault()
-    let mounted = true;
-    axios.post(`http://localhost:3001/todolist`, this.state.new_todo).then(response => {
-      console.log(response.data)
-      if(mounted) {
-        this.setState({
-          todolist: this.state.todolist.concat(response.data),
-          new_todo: ''
-        })
-      }})
-    return () => mounted = false
-  }
-
-  deleteTodo = (id) => {
-    axios.delete(`http://localhost:3001/todolist/${id}`).then(response => {
-      console.log(response.data)
-      this.setState({
-        todolist: this.state.todolist.filter(todo => todo.id !== id)
-      })}).catch(error => {
-      console.log(error)
+  const handleToggle = (id) => {
+    let mapped = toDoList.map(item => {
+      return item.id === Number(id) ? { ...item, finished: !item.finished} : {...item}
     })
+    setToDoList(mapped)
   }
-  
-  componentDidMount(){
-    axios.get('http://localhost:3001/todolist').then(response => {
-      console.log(response)
-      this.setState({
-        todolist: response.data
-      })
+
+  const handleDelete = (id) => {
+    let filtered = toDoList.filter(item => {
+      return item.id !== Number(id)
     })
+    setToDoList(filtered)
   }
 
-  handleTodo = (event) => {
-    this.setState({new_todo: event.target.value})
+  const addItem = (input) => {
+    let updated = [...toDoList, {id: toDoList.length + 1, item: input, finished: false}]
+    setToDoList(updated)
   }
 
-  render() {
-    return (
-      <div>
-        <h1> To Do -lista </h1>
-        <Form state={this.state} addTodo={this.addTodo} handleTodo={this.handleTodo}/>
-        <ToDoList todolist={this.state.todolist} deleteTodo={this.deleteTodo}/>
-      </div>
-    );
+  const sortItems = () => {
+    let sorted = [...toDoList].sort((a, b) => a.item > b.item ? 1 : -1)
+    setToDoList(sorted)
   }
+
+  const clearItems = () => {
+    let emptyList = []
+    setToDoList(emptyList)
+  }
+
+  return (
+   <div className="App">
+    	<Header />
+      <Form addItem={addItem}/>
+      <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleDelete={handleDelete}/>
+      <button onClick={sortItems}>Sort alphabetically</button> <button onClick={clearItems}>Clear all tasks</button>
+   </div>
+  );
 }
+ 
 export default App;

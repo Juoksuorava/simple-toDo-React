@@ -1,11 +1,15 @@
 import React from 'react'
-import ToDo from './ToDo'
+import ToDo from './ToDo.js'
 
-const ToDoList = (props) => {
+const ToDoList = ({toDoList, handleToggle, handleDelete}) => {
     return (
-        <ul>
-            {props.todolist.map(todo => <ToDo key={todo.id} id={todo.id} deleteTodo={props.deleteTodo} text={todo.text}/>)}
-        </ul>
+        <div>
+            {toDoList.map(toDo => {
+                return (
+                    <ToDo toDo={toDo} handleToggle={handleToggle} handleDelete={handleDelete}/>
+                )
+            })}
+        </div>
     )
 }
 

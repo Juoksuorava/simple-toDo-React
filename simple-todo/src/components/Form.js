@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Form = (props) => {
+const Form = ({addItem}) => {
+
+    const [ input, setInput] = useState('')
+
+    const handleChange = (e) => {
+        setInput(e.currentTarget.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        addItem(input)
+        setInput('')
+    }
+
     return (
-        <form onSubmit={props.addToDo}>
-            <div>
-                <input value={props.state.new_todo} onChange={(e) => props.handleTodo(e)}/>
-                <button type='submit'></button>
-            </div>
+        <form onSubmit={handleSubmit}>
+            <input
+            value={input}
+            type="text"
+            onChange={handleChange}
+            placeholder="Enter task"
+            >
+            </input>
+            <button>Submit</button>
         </form>
-    )
+    );
 }
 
 export default Form

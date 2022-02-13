@@ -1,0 +1,17 @@
+[{
+  "id": 1,
+  "item": "Go to job interview",
+  "finished": true
+  }, {
+  "id": 2,
+  "item": "Nail the interview",
+  "finished": false
+  }, {
+  "id": 3,
+  "item": "Teach Java",
+  "finished": true
+  }, {
+  "id": 4,
+  "item": "Do course projects",
+  "finished": false
+}]
