@@ -20,10 +20,11 @@ const Form = ({addItem}) => {
             value={input}
             type="text"
             onChange={handleChange}
+            className='form-input'
             placeholder="Enter task"
             >
             </input>
-            <button>Submit</button>
+            <button className='form-button'> + </button>
         </form>
     );
 }

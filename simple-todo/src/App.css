@@ -1,0 +1,80 @@
+body {
+    background: linear-gradient(
+      90deg,
+      rgb(220, 216, 240) 0%,
+      rgb(186, 191, 241) 100%
+    );
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 50%;
+    min-height: 600px;
+    background: #fafafa;
+    text-align: center;
+    margin: 128px auto;
+    border-radius: 10px;
+    padding-bottom: 32px;
+}
+
+h1 {
+    margin: 32px 0;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+}
+
+.form-input {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #c47207cc;
+    outline: none;
+    width: 75%;
+    background: transparent;
+}
+
+.form-button {
+    margin-left: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: lightgreen;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.button-container {
+    margin: 5px 0;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.toDoList {
+    display: flex;
+    flex-direction: column;
+}
+
+.sortBtn {
+    margin-left: 5%;
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(6, 112, 252, 0.973);
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.clearBtn {
+    margin-left: 5%;
+    padding: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: lightsalmon;
+    color: #fff;
+    text-transform: capitalize;
+}

@@ -41,8 +41,11 @@ function App() {
    <div className="App">
     	<Header />
       <Form addItem={addItem}/>
-      <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleDelete={handleDelete}/>
-      <button onClick={sortItems}>Sort alphabetically</button> <button onClick={clearItems}>Clear all tasks</button>
+      <ToDoList className='toDoList' toDoList={toDoList} handleToggle={handleToggle} handleDelete={handleDelete}/>
+      <div className="button-container">
+        <button onClick={sortItems} className="sortBtn">Sort alphabetically</button>
+        <button onClick={clearItems} className="clearBtn">Clear all tasks</button>
+      </div>
    </div>
   );
 }

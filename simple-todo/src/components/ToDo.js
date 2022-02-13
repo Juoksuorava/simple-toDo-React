@@ -14,17 +14,21 @@ const ToDo = ({toDo, handleToggle, handleDelete}) => {
     }
 
     return (
-        <div>
+        <div className='todo'>
             <span
             id={toDo.id}
             key={toDo.item + toDo.id}
-            className={toDo.finished ? 'strike' : ''}
-            onClick={handleCLick}
-            >
+            className={toDo.finished ? 'finished-todo' : 'unfinished-todo'}
+            onClick={handleCLick}>
                 {toDo.item + ' '}
             </span>
-            <button onClick={handleDeleteBtn}>Delete</button>
+            <button
+            onClick={handleDeleteBtn}
+            className='deleteToDoBtn'>
+                x
+            </button>
         </div>
+
    );
 };
  
